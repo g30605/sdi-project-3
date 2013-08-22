@@ -13,13 +13,14 @@ var footballTeam = function (name) {
   var getCoach = function () { return coach; };
   var getPlayer = function (player) {
 		for (var i =0, j = roster.length; i < j; i++){
-			if (roster[i] === player) {
-				console.log(player + " " + player.age(player) + " " + player.born(player));
+			if (roster[i] === player.name(player)) {
+				 var playerInfo = roster[i] + " " + "age: " + player.age() + "\n" + player.born();
+				 break;
 			} else {
 				console.log("Player not found.");
 			}
 		};
-		return player;
+		return playerInfo;
 	};
 	var getRoster = function () { return roster; };
 
@@ -58,12 +59,12 @@ var footballTeam = function (name) {
 	};
 };
 
-var player = function (name, age, born) {
+var player = function (name, age, born, number, position) {
 	// Private
 	// Accessors
 	var getName = function () { return name; };
-	var getAge = function (name) { return age; };
-	var bornInfo = function (name) {
+	var getAge = function () { return age; };
+	var bornInfo = function () {
 		var bornOutput = "Born in " + born[1] + ", " + born[2] + " on " + born[0] + ".";
 		return bornOutput;
 	};
@@ -80,9 +81,13 @@ var player = function (name, age, born) {
 };
 
 
-var blane = player("Blane lane", 32, ["3-24-81","Buffalo","New York"]);
-console.log(blane.age());
-console.log(blane.born());
+var blanelane = player("Blane lane", 32, ["3-24-81","Buffalo","New York"], 7, "Quarterback");
+console.log(blanelane.age());
+console.log(blanelane.born());
 var team1 = footballTeam("Team 1");
 team1.addPlayer(["Blane lane", "Peter Tale", "Brian Simmons", "Carl Hunley", "James Water", "Tini Dome"]);
+
 console.log(team1.roster());
+team1.cutPlayer(["Brian Simmons"]);
+console.log(team1.roster());
+console.log(team1.teamPlayer(blanelane));
